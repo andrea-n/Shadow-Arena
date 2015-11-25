@@ -109,7 +109,7 @@ public class HexGridFieldManager : MonoBehaviour {
                         oneHex.GetComponent<HexTile>().setPlaceHolder((GameObject)Instantiate(treeObject[Random.Range(0, treeObject.Length - 1)]));
                     }
                 }
-                if ((j == gridSize.y - 1)) {
+                /*if ((j == gridSize.y - 1)) {
                     oneHex.GetComponent<HexTile>().setUnit((GameObject)Instantiate(unitObject[i]));
                     oneHex.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().side = 1;
                     if (playerTurn == 1) {
@@ -119,7 +119,7 @@ public class HexGridFieldManager : MonoBehaviour {
                         oneHex.GetComponent<HexTile>().unHighlightUnitTile();
                         oneHex.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().hideUnit();
                     }
-                }
+                }*/
                 /*if ((j == 0)) {
                     oneHex.GetComponent<HexTile>().setUnit((GameObject)Instantiate(unitObject[i]));
                     oneHex.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().side = 0;
@@ -159,11 +159,38 @@ public class HexGridFieldManager : MonoBehaviour {
         {
             string unitX = xn["positionX"].InnerText;
             string unitY = xn["positionY"].InnerText;
-            string unitID = xn["id"].InnerText;
+            string unitID = xn["rank"].InnerText;
             GameObject n = (GameObject)board[new Point(int.Parse(unitX), int.Parse(unitY))];
             n.GetComponent<HexTile>().setUnit((GameObject)Instantiate(unitObject[int.Parse(unitID)]));
-            n.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().side = 0;
+            n.GetComponent<HexTile>().setSide(0);
             if (playerTurn == 0)
+            {
+                n.GetComponent<HexTile>().highlightUnitTile();
+                n.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().unhideUnit();
+            }
+            else
+            {
+                n.GetComponent<HexTile>().unHighlightUnitTile();
+                n.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().hideUnit();
+            }
+        }
+    }
+
+    void readXML2()
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/unitslayout.xml");
+        XmlNodeList nodeList;
+        nodeList = xmlDoc.SelectNodes("/Units/Unit"); ;
+        foreach (XmlNode xn in nodeList)
+        {
+            string unitX = xn["positionX"].InnerText;
+            string unitY = xn["positionY"].InnerText;
+            string unitID = xn["rank"].InnerText;
+            GameObject n = (GameObject)board[new Point((int)gridSize.x - 1 - int.Parse(unitX), (int)gridSize.y - 1 - int.Parse(unitY))];
+            n.GetComponent<HexTile>().setUnit((GameObject)Instantiate(unitObject[int.Parse(unitID)]));
+            n.GetComponent<HexTile>().setSide(1);
+            if (playerTurn == 1)
             {
                 n.GetComponent<HexTile>().highlightUnitTile();
                 n.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().unhideUnit();
@@ -181,6 +208,7 @@ public class HexGridFieldManager : MonoBehaviour {
         inicialization();
         createGrid();
         readXML();
+        readXML2();
         playerCameraPosition1 = cam.transform.position;
         playerCameraPosition2 = new Vector3(9f, 5f, 33.5f);
         playerCameraRotation1 = cam.transform.localRotation;

@@ -239,6 +239,12 @@ public class HexTile : MonoBehaviour {
         }
     }
 
+    public void setSide(int sid)
+    {
+        unit.GetComponent<BasicUnit>().side = sid;
+        unit.transform.rotation = new Quaternion(0, 1, 0, sid * 180);
+    }
+
     public void setUnit(GameObject unitObject)
     {
         unit = unitObject;

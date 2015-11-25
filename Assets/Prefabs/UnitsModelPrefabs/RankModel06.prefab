@@ -10,9 +10,8 @@ GameObject:
   - 4: {fileID: 432270}
   - 33: {fileID: 3359646}
   - 23: {fileID: 2356636}
-  - 114: {fileID: 11466144}
   m_Layer: 0
-  m_Name: Rank06
+  m_Name: RankModel06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,25 +60,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178404}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11466144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e736dac8068f7498c5c1668841b6db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reach: 2
-  side: 0
-  rank: 6
-  mainMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  hiddenMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  vulnerable: 1
-  moveable: 1
-  passiveAbility: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

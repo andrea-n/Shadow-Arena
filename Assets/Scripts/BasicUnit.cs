@@ -12,8 +12,9 @@ public class BasicUnit : MonoBehaviour {
     protected bool moving = false, attacking = false; //je v pohybu
     protected Vector3 target; //souradnice policek na ktera se jednotka postupne presouva
     protected HexTile targetTile, attackingTile; //reference na policko kam se ve finale presunem
-    public Mesh mainMesh;
-    public Mesh hiddenMesh;
+    public GameObject mainModel;
+    public GameObject hiddenModel;
+    private GameObject currentModel;
     public bool vulnerable = true, moveable = true, passiveAbility = false;
 
 
@@ -59,6 +60,12 @@ public class BasicUnit : MonoBehaviour {
         hiddenRank = rank;
     }
 
+    public void destroyUnit()
+    {
+        Destroy(currentModel);
+        Destroy(this);
+    }
+
     public void attackTile()
     {
         if (passiveAbility)
@@ -70,7 +77,8 @@ public class BasicUnit : MonoBehaviour {
         if (hiddenRank > attackingTile.unit.GetComponent<BasicUnit>().attackedGetRank())
         {
             
-            Destroy(attackingTile.unit);
+            attackingTile.unit.GetComponent<BasicUnit>().destroyUnit();
+            attackingTile.unit = null;
             path.Add(attackingTile);
             proceedPath();
             resetRank();
@@ -78,24 +86,26 @@ public class BasicUnit : MonoBehaviour {
         else if(hiddenRank < attackingTile.unit.GetComponent<BasicUnit>().attackedGetRank())
         {
             attackingTile.unit.GetComponent<BasicUnit>().resetRank();
-            Destroy(HexGridFieldManager.instance.selectedHex.unit);
+            //HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().destroyUnit();
             path.Clear();
             HexGridFieldManager.instance.selectedHex.unHighlightUnitTile();
             HexGridFieldManager.instance.selectedHex.unHighlightTile(true);
             HexGridFieldManager.instance.selectedHex.selectNeighbours(HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().reach, false);
             HexGridFieldManager.instance.selectedHex.unit = null;
             HexGridFieldManager.instance.selectedHex = null;
+            destroyUnit();
         }
         else
         {
-            Destroy(attackingTile.unit);
-            Destroy(HexGridFieldManager.instance.selectedHex.unit);
+            attackingTile.unit.GetComponent<BasicUnit>().destroyUnit();
+            attackingTile.unit = null;
             path.Clear();
             HexGridFieldManager.instance.selectedHex.unHighlightUnitTile();
             HexGridFieldManager.instance.selectedHex.unHighlightTile(true);
             HexGridFieldManager.instance.selectedHex.selectNeighbours(HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().reach, false);
             HexGridFieldManager.instance.selectedHex.unit = null;
             HexGridFieldManager.instance.selectedHex = null;
+            destroyUnit();
         }
     }
 
@@ -120,6 +130,12 @@ public class BasicUnit : MonoBehaviour {
         }
     }
 
+    public void setPosition(Vector3 pos)
+    {
+        transform.position = pos;
+        currentModel.transform.position = pos;
+    }
+
     public bool isMoveable()
     {
         return moveable;
@@ -137,11 +153,25 @@ public class BasicUnit : MonoBehaviour {
 
     public void hideUnit()
     {
+        if(currentModel != null)
+        {
+            Destroy(currentModel);
+        }
+        currentModel = (GameObject)Instantiate(hiddenModel);
+        currentModel.transform.position = transform.position;
+        currentModel.transform.rotation = transform.rotation;
         //GetComponent<MeshFilter>().mesh = hiddenMesh;
     }
 
     public void unhideUnit()
     {
+        if (currentModel != null)
+        {
+            Destroy(currentModel);
+        }
+        currentModel = (GameObject)Instantiate(mainModel);
+        currentModel.transform.position = transform.position;
+        currentModel.transform.rotation = transform.rotation;
         //GetComponent<MeshFilter>().mesh = mainMesh;
     }
 
@@ -162,7 +192,8 @@ public class BasicUnit : MonoBehaviour {
         if (moving)
         {
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, target, step);
+            setPosition(Vector3.MoveTowards(currentModel.transform.position, target, step));
+            //transform.position = Vector3.MoveTowards(transform.position, target, step);
             if (transform.position.Equals(target))
             {
                 if (path.Count == 0)

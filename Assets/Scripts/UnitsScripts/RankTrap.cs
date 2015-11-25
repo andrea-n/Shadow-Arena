@@ -8,7 +8,6 @@ public class RankTrap : BasicUnit
         if(!attacking)
         {
             hiddenRank = 99;
-            Debug.Log("HIDDEN RANK: 99");
         }
     }
 }

@@ -1,61 +1,61 @@
 <Units>
 	<Unit>
-		<id>0</id>
+		<rank>0</rank>
 		<positionX>0</positionX>
 		<positionY>0</positionY>
 	</Unit>
 	<Unit>
-		<id>1</id>
+		<rank>1</rank>
 		<positionX>1</positionX>
 		<positionY>0</positionY>
 	</Unit>
 	<Unit>
-		<id>2</id>
+		<rank>2</rank>
 		<positionX>2</positionX>
 		<positionY>0</positionY>
 	</Unit>
 	<Unit>
-		<id>3</id>
+		<rank>3</rank>
 		<positionX>1</positionX>
 		<positionY>1</positionY>
 	</Unit>
 	<Unit>
-		<id>4</id>
+		<rank>8</rank>
 		<positionX>3</positionX>
 		<positionY>0</positionY>
 	</Unit>
 	<Unit>
-		<id>5</id>
+		<rank>9</rank>
 		<positionX>4</positionX>
 		<positionY>0</positionY>
 	</Unit>
 	<Unit>
-		<id>6</id>
+		<rank>10</rank>
 		<positionX>2</positionX>
 		<positionY>1</positionY>
 	</Unit>
 	<Unit>
-		<id>7</id>
+		<rank>11</rank>
 		<positionX>4</positionX>
 		<positionY>1</positionY>
 	</Unit>
   <Unit>
-    <id>9</id>
+    <rank>10</rank>
     <positionX>8</positionX>
     <positionY>1</positionY>
   </Unit>
   <Unit>
-    <id>1</id>
+    <rank>8</rank>
     <positionX>6</positionX>
     <positionY>0</positionY>
   </Unit>
   <Unit>
-    <id>4</id>
+    <rank>4</rank>
     <positionX>8</positionX>
     <positionY>0</positionY>
   </Unit>
   <Unit>
-    <id>9</id>
+    <rank>9</rank>
     <positionX>7</positionX>
     <positionY>1</positionY>
   </Unit>
