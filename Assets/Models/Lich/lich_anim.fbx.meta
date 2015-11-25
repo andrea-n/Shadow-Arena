@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7d0f6d291fcf51e4bb2a510e94ae66ff
-timeCreated: 1448288630
+guid: e39b52a1b6b50b94caf1560ecc731377
+timeCreated: 1448440648
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -8,19 +8,21 @@ ModelImporter:
     100000: "Cylinder001 (Kop\xEDrovat)"
     100002: Hlava
     100004: //RootNode
-    100006: Ruka dole leva
-    100008: Ruka dole prava
-    100010: Ruka nahore leva
-    100012: Ruka nahore prava
-    100014: Telo
+    100006: Osy.2
+    100008: Ruka dole leva
+    100010: Ruka dole prava
+    100012: Ruka nahore leva
+    100014: Ruka nahore prava
+    100016: Telo
     400000: "Cylinder001 (Kop\xEDrovat)"
     400002: Hlava
     400004: //RootNode
-    400006: Ruka dole leva
-    400008: Ruka dole prava
-    400010: Ruka nahore leva
-    400012: Ruka nahore prava
-    400014: Telo
+    400006: Osy.2
+    400008: Ruka dole leva
+    400010: Ruka dole prava
+    400012: Ruka nahore leva
+    400014: Ruka nahore prava
+    400016: Telo
     2300000: "Cylinder001 (Kop\xEDrovat)"
     2300002: Hlava
     2300004: Ruka dole leva
