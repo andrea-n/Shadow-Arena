@@ -42,6 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   hex: {fileID: 101758, guid: b058a69abba50fa43bb970cbdc7a5734, type: 2}
+  layoutHex: {fileID: 191690, guid: 9332d503debb4ad4c8a30092a5dd11b7, type: 2}
   unitObject:
   - {fileID: 110962, guid: 8d8141a0c5b722d4eb3de07855d7cbd1, type: 2}
   - {fileID: 130046, guid: dc75a8d60606a2240a0d8a4ab8f14f14, type: 2}
@@ -56,12 +57,22 @@ MonoBehaviour:
   - {fileID: 162230, guid: 80e4050de6376854d907798c181b766e, type: 2}
   - {fileID: 169804, guid: 4f8946b7123ef714bb9c420ad057ffd4, type: 2}
   gridSize: {x: 10, y: 19}
+  layoutHexPosition: {x: 0, y: 0, z: 0}
   selectedHex: {fileID: 0}
-  treeObject: []
+  selectedLayoutHex: {fileID: 0}
+  treeObject:
+  - {fileID: 100000, guid: 51aa46d0c69ae894781b7199745f9667, type: 3}
+  - {fileID: 100000, guid: ddd63595b81cf264ca9a287bbb1e5ac0, type: 3}
+  - {fileID: 100000, guid: f9440e6f98f4eca4f84470f054cd102c, type: 3}
+  - {fileID: 100000, guid: 0217fda1e275e074395df4c58cf3bf35, type: 3}
+  rankNumberOfUnits: 
   playerTurn: 0
   numberOfActionsMax: 2
   unitRankText: {fileID: 0}
   numberOfActionsText: {fileID: 0}
+  GUIObjects: []
+  inputText: {fileID: 0}
+  editMode: 1
 --- !u!114 &11491334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,6 +94,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: unitObject.Array.size
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: treeObject.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: hex
@@ -160,6 +175,26 @@ Prefab:
       propertyPath: unitObject.Array.data[11]
       value: 
       objectReference: {fileID: 169804, guid: 4f8946b7123ef714bb9c420ad057ffd4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: treeObject.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: 51aa46d0c69ae894781b7199745f9667, type: 3}
+    - target: {fileID: 0}
+      propertyPath: treeObject.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: ddd63595b81cf264ca9a287bbb1e5ac0, type: 3}
+    - target: {fileID: 0}
+      propertyPath: treeObject.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: f9440e6f98f4eca4f84470f054cd102c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: treeObject.Array.data[3]
+      value: 
+      objectReference: {fileID: 100000, guid: 0217fda1e275e074395df4c58cf3bf35, type: 3}
+    - target: {fileID: 0}
+      propertyPath: layoutHex
+      value: 
+      objectReference: {fileID: 191690, guid: 9332d503debb4ad4c8a30092a5dd11b7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102308}

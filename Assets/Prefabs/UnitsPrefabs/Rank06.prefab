@@ -42,8 +42,9 @@ MonoBehaviour:
   reach: 2
   side: 0
   rank: 6
-  mainModel: {fileID: 178404, guid: 2cf1a4059cd3b8d4c850399ffd6956b3, type: 2}
+  mainModel: {fileID: 100330, guid: c889a08b73874d84fbcb219bc9ec5f27, type: 2}
   hiddenModel: {fileID: 100330, guid: c889a08b73874d84fbcb219bc9ec5f27, type: 2}
+  visibleModel: 0
   vulnerable: 1
   moveable: 1
   passiveAbility: 0
@@ -57,7 +58,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mainModel
       value: 
-      objectReference: {fileID: 178404, guid: 2cf1a4059cd3b8d4c850399ffd6956b3, type: 2}
+      objectReference: {fileID: 100330, guid: c889a08b73874d84fbcb219bc9ec5f27, type: 2}
     - target: {fileID: 0}
       propertyPath: hiddenModel
       value: 

@@ -15,6 +15,7 @@ public class BasicUnit : MonoBehaviour {
     public GameObject mainModel;
     public GameObject hiddenModel;
     private GameObject currentModel;
+    public bool visibleModel = false;
     public bool vulnerable = true, moveable = true, passiveAbility = false;
 
 
@@ -52,6 +53,8 @@ public class BasicUnit : MonoBehaviour {
         {
             useAbility();
         }
+        visibleModel = true;
+        unhideUnit();
         return hiddenRank;
     }
 
@@ -72,6 +75,7 @@ public class BasicUnit : MonoBehaviour {
         {
             useAbility();
         }
+        visibleModel = true;
         moving = false;
         attacking = false;
         if (hiddenRank > attackingTile.unit.GetComponent<BasicUnit>().attackedGetRank())
@@ -153,6 +157,8 @@ public class BasicUnit : MonoBehaviour {
 
     public void hideUnit()
     {
+        if (visibleModel)
+            return;
         if(currentModel != null)
         {
             Destroy(currentModel);

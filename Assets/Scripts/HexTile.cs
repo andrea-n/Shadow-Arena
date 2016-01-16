@@ -14,10 +14,10 @@ public class HexTile : MonoBehaviour {
     public Sprite fullSprite;
     public Sprite outlineSprite;
 
-    private bool selected = false, neighbourHighlight = false;
-    Color orange = new Color(255f / 255f, 127f / 255f, 0, 127f / 255f);
-    Color orange2 = new Color(255f / 255f, 191f / 255f, 54f / 255f, 127f / 255f);
-    private Color previousColor, highlightedColor;
+    protected bool selected = false, neighbourHighlight = false;
+    protected Color orange = new Color(255f / 255f, 127f / 255f, 0, 127f / 255f);
+    protected Color orange2 = new Color(255f / 255f, 191f / 255f, 54f / 255f, 127f / 255f);
+    protected Color previousColor, highlightedColor;
 
     public void changeColor(Color color)
     {
@@ -91,68 +91,96 @@ public class HexTile : MonoBehaviour {
 
     void OnMouseOver() //pokud je mys na poli a klikneme pravym tlacitkem, tak provedeme akci
     {
-        if (Input.GetMouseButtonDown(1) && HexGridFieldManager.instance.selectedHex != null
+        if (!HexGridFieldManager.instance.editMode)
+        {
+            if (Input.GetMouseButtonDown(1) && HexGridFieldManager.instance.selectedHex != null
             && !HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().isMoving()
             && HexGridFieldManager.instance.hasAvailableActions())
-            mouseRightButtonClick();
+                mouseRightButtonClick();
+        } else {
+            if (Input.GetMouseButtonDown(1))
+                mouseRightButtonClick();
+        }
     }
 
     void OnMouseDown()
     {
-        if (unit == null || unit.GetComponent<BasicUnit>().side != HexGridFieldManager.instance.playerTurn ||
-            (HexGridFieldManager.instance.selectedHex != null && HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().isMoving()))
-            return;
-        //pokud se jednotka nepohybuje, tak pole vybereme
-        if (!selected)
+        if (!HexGridFieldManager.instance.editMode)
         {
-            if (HexGridFieldManager.instance.selectedHex != null) //pokud bylo nejake pole vybrano, tak vyber zrusime
+            if (unit == null || unit.GetComponent<BasicUnit>().side != HexGridFieldManager.instance.playerTurn ||
+                (HexGridFieldManager.instance.selectedHex != null && HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().isMoving()))
+                return;
+            //pokud se jednotka nepohybuje, tak pole vybereme
+            if (!selected)
             {
-                HexGridFieldManager.instance.unitRankText.text = "Unit rank: ";
-                HexGridFieldManager.instance.selectedHex.unHighlightTile(true);
-                HexGridFieldManager.instance.selectedHex.selectNeighbours(HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().reach, false);
+                if (HexGridFieldManager.instance.selectedHex != null) //pokud bylo nejake pole vybrano, tak vyber zrusime
+                {
+                    HexGridFieldManager.instance.unitRankText.text = "Unit rank: ";
+                    HexGridFieldManager.instance.selectedHex.unHighlightTile(true);
+                    HexGridFieldManager.instance.selectedHex.selectNeighbours(HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().reach, false);
+                }
+                HexGridFieldManager.instance.selectedHex = this;
+                highlightTile(orange, true);
+                selectNeighbours(unit.GetComponent<BasicUnit>().reach, true); //a zaroven zvyraznime dosah ktery ma jednotka na tomto poli
+                HexGridFieldManager.instance.unitRankText.text = "Unit rank: " + this.unit.GetComponent<BasicUnit>().rank;
             }
-            HexGridFieldManager.instance.selectedHex = this;
-            highlightTile(orange, true);
-            selectNeighbours(unit.GetComponent<BasicUnit>().reach, true); //a zaroven zvyraznime dosah ktery ma jednotka na tomto poli
-            HexGridFieldManager.instance.unitRankText.text = "Unit rank: " + this.unit.GetComponent<BasicUnit>().rank;
+            else //pokud pole bylo vybrano a znovu na nej klikneme, tak zrusime vybrani a zvyrazneni dalsich poli
+            {
+                unHighlightTile(true);
+                selectNeighbours(unit.GetComponent<BasicUnit>().reach, false);
+                HexGridFieldManager.instance.selectedHex = null;
+                HexGridFieldManager.instance.unitRankText.text = "Unit rank: ";
+            }
+            PathFinder.instance.reset();
+        } else {
+            if (HexGridFieldManager.instance.selectedLayoutHex == null || unit != null ||
+                HexGridFieldManager.instance.selectedLayoutHex.numberOfAvailableUnits <= 0 ||
+                boardPosition.y >= 4)
+                return;
+            //pokud se jednotka nepohybuje, tak pole vybereme
+            setUnit((GameObject)Instantiate(HexGridFieldManager.instance.selectedLayoutHex.unit));
+            setSide(HexGridFieldManager.instance.playerTurn);
+            unit.GetComponent<BasicUnit>().unhideUnit();
+            HexGridFieldManager.instance.selectedLayoutHex.changeAvailableUnits(-1);
         }
-        else //pokud pole bylo vybrano a znovu na nej klikneme, tak zrusime vybrani a zvyrazneni dalsich poli
-        {
-            unHighlightTile(true);
-            selectNeighbours(unit.GetComponent<BasicUnit>().reach, false);
-            HexGridFieldManager.instance.selectedHex = null;
-            HexGridFieldManager.instance.unitRankText.text = "Unit rank: ";
-        }
-        PathFinder.instance.reset();
     }
 
     void mouseRightButtonClick() //jednotka se zacne pohybovat smerem k tomuto poli pokud je to mozne
     {
-        if (!HexGridFieldManager.instance.hasAvailableActions())
-            return;
-        if (isPassable())
+        if (!HexGridFieldManager.instance.editMode)
         {
-            if (neighbourHighlight)
+            if (!HexGridFieldManager.instance.hasAvailableActions())
+                return;
+            if (isPassable())
             {
-                if (HexGridFieldManager.instance.selectedHex != null)
+                if (neighbourHighlight)
                 {
-                    HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().proceedPath();
-                    HexGridFieldManager.instance.proceedAction();
-                    //HexGridFieldManager.instance.nextTurn();
+                    if (HexGridFieldManager.instance.selectedHex != null)
+                    {
+                        HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().proceedPath();
+                        HexGridFieldManager.instance.proceedAction();
+                        //HexGridFieldManager.instance.nextTurn();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (neighbourHighlight && (HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().isVulnerable()))
+            else
             {
-                if (HexGridFieldManager.instance.selectedHex != null)
+                if (neighbourHighlight && (HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().isVulnerable()))
                 {
-                    HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().proceedAttack(this);
-                    HexGridFieldManager.instance.proceedAction();
-                    //HexGridFieldManager.instance.nextTurn();
+                    if (HexGridFieldManager.instance.selectedHex != null)
+                    {
+                        HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().proceedAttack(this);
+                        HexGridFieldManager.instance.proceedAction();
+                        //HexGridFieldManager.instance.nextTurn();
+                    }
                 }
             }
+        } else {
+            if (unit == null)
+                return;
+            HexGridFieldManager.instance.addAvailableUnit(unit.GetComponent<BasicUnit>().rank);
+            unit.GetComponent<BasicUnit>().destroyUnit();
+            unit = null;
         }
     }
 
