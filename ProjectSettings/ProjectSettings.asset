@@ -11,8 +11,8 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: FI MUNI PV255 Shadow Arena Team
   productName: Shadow Arena
-  defaultCursor: {fileID: 0}
-  cursorHotspot: {x: 0, y: 0}
+  defaultCursor: {fileID: 2800000, guid: 9448f8674b7edf946b3d46893fa37310, type: 3}
+  cursorHotspot: {x: 4, y: 4}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -173,9 +173,9 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 0
-      m_Height: 0
+      m_Icon: {fileID: 2800000, guid: 78cbb29393560114286251b200f01915, type: 3}
+      m_Width: 128
+      m_Height: 128
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: WindowsStandaloneSupport
