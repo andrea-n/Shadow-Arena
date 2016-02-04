@@ -2166,7 +2166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &444150157
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3605,8 +3605,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
-  - On
   - Off
+  - On
   activeValue: 0
   label: {fileID: 994672418}
   manager: {fileID: 439179969}
@@ -3873,8 +3873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
-  - On
   - Off
+  - On
   activeValue: 0
   label: {fileID: 173976262}
   manager: {fileID: 439179969}
@@ -7090,8 +7090,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
-  - On
   - Off
+  - On
   activeValue: 0
   label: {fileID: 947209126}
   manager: {fileID: 439179969}
@@ -7201,8 +7201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
-  - On
   - Off
+  - On
   activeValue: 0
   label: {fileID: 1380675149}
   manager: {fileID: 439179969}
@@ -10066,8 +10066,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 305, y: -124}
-  m_SizeDelta: {x: 610, y: 248}
+  m_AnchoredPosition: {x: 409.5, y: -196}
+  m_SizeDelta: {x: 819, y: 392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598099725
 MonoBehaviour:
@@ -10089,7 +10089,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bd90a510c92033a42972dfc52853ee3c, type: 3}
+    m_Font: {fileID: 12800000, guid: e004b2d8779c5b045910cf059740b8e2, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0

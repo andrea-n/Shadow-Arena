@@ -4924,6 +4924,10 @@ Prefab:
       propertyPath: rankNumberOfUnits.Array.data[11]
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11425530, guid: c3a02adc5a33b0940948363c5523617c, type: 2}
+      propertyPath: menuManager
+      value: 
+      objectReference: {fileID: 519002623}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3a02adc5a33b0940948363c5523617c, type: 2}
   m_IsPrefabParent: 0

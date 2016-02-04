@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour {
 
 	public IEnumerator DisplayTimedTooltip(string message){
 		DisplayTooltip (message);
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (4f);
 		HideTooltip ();
 	}
 
