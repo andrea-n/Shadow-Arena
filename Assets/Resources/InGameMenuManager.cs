@@ -9,13 +9,16 @@ public class InGameMenuManager : MonoBehaviour {
 	public MenuManager menuManager;
 
 	private bool isPaused = false;
+	public bool preparationPhase = true;
 
 	public void TogglePause(){
 		isPaused = !isPaused;
 		inGameCanvas.gameObject.SetActive (!isPaused);
 		menuCanvas.gameObject.SetActive (isPaused);
 		Camera.main.GetComponent<Blur> ().enabled = isPaused;
-		Camera.main.GetComponent<cameraMovement> ().enabled = !isPaused;
+		if (!preparationPhase) {
+			Camera.main.GetComponent<cameraMovement> ().enabled = !isPaused;
+		}
 		switch (isPaused) {
 		case true:
 			Time.timeScale = 0f;
@@ -24,6 +27,10 @@ public class InGameMenuManager : MonoBehaviour {
 			Time.timeScale = 1f;
 			break;
 		}
+	}
+
+	public void EndPreparation(){
+		preparationPhase = false;
 	}
 	
 	// Update is called once per frame
