@@ -211,6 +211,10 @@ public class HexGridFieldManager : MonoBehaviour {
         {
             layoutHexTiles[k].GetComponent<LayoutHexTile>().setAvailableUnits(0);
         }
+
+		if (!File.Exists (Application.dataPath + "/Resources/" + inputText.text + ".xml")) {
+			return;
+		}
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/" + inputText.text + ".xml");
         XmlNodeList nodeList;
