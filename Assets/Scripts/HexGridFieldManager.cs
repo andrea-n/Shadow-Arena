@@ -29,6 +29,7 @@ public class HexGridFieldManager : MonoBehaviour {
     public int numberOfActionsMax = 1;
     public Text unitRankText, numberOfActionsText;
     public GameObject[] GUIObjects;
+    public GameObject NextPlayerButton, StartGameButton;
     public InputField inputText;
     public bool editMode = true;
 
@@ -157,8 +158,27 @@ public class HexGridFieldManager : MonoBehaviour {
         }
     }
 
+    public void resetGrid()
+    {
+        foreach (GameObject tile in board.Values)
+        {
+            if (playerTurn == 0)
+            {
+                if(tile.GetComponent<HexTile>().boardPosition.y > 4)
+                    break;
+                tile.GetComponent<HexTile>().resetTile();
+            }
+            else if (playerTurn == 1)
+            {
+                if (tile.GetComponent<HexTile>().boardPosition.y > gridSize.y - 5)
+                    tile.GetComponent<HexTile>().resetTile();
+            }
+        }
+    }
+
     public void loadLayout()
     {
+        resetGrid();
         for (int k = 0; k < layoutHexTiles.Length; k++)
         {
             layoutHexTiles[k].GetComponent<LayoutHexTile>().setAvailableUnits(0);
@@ -181,13 +201,14 @@ public class HexGridFieldManager : MonoBehaviour {
             {
                 n = (GameObject)board[new Point(int.Parse(unitX), int.Parse(unitY))];
             } else {
-                n = (GameObject)board[new Point((int)gridSize.x - 1 - int.Parse(unitX), (int)gridSize.y - 1 - int.Parse(unitY))];
+            n = (GameObject)board[new Point((int)gridSize.x + (int.Parse(unitY)) - 1 - int.Parse(unitX), (int)gridSize.y - 1 - int.Parse(unitY))];
             }
-            n.GetComponent<HexTile>().setUnit((GameObject)Instantiate(unitObject[int.Parse(unitID) + 1]));
-            n.GetComponent<HexTile>().setSide(playerTurn);
+            n.GetComponent<HexTile>().setUnit((GameObject)Instantiate(unitObject[int.Parse(unitID) + 1]), playerTurn);
+            n.GetComponent<HexTile>().setSide(playerTurn, true);
             n.GetComponent<HexTile>().highlightUnitTile();
             n.GetComponent<HexTile>().unit.GetComponent<BasicUnit>().unhideUnit();
         }
+        checkAvailableLayoutUnits();
     }
 
     public void saveLayout()
@@ -199,16 +220,23 @@ public class HexGridFieldManager : MonoBehaviour {
 
             foreach (Point point in board.Keys)
             {
-                if (point.y > 4)
+                if ((playerTurn == 0 && point.y > 4))
                     break;
+                else if ((playerTurn == 1 && point.y < gridSize.y - 5))
+                    continue;
                 if (((GameObject)board[point]).GetComponent<HexTile>().unit != null) {
                     HexTile hT = ((GameObject)board[point]).GetComponent<HexTile>();
                     writer.WriteStartElement("Unit");
 
                     writer.WriteElementString("rank", "" + hT.unit.GetComponent<BasicUnit>().rank);
-                    writer.WriteElementString("positionX", "" + hT.boardPosition.x);
-                    writer.WriteElementString("positionY", "" + hT.boardPosition.y);
-
+                    if (playerTurn == 0)
+                    {
+                        writer.WriteElementString("positionX", "" + hT.boardPosition.x);
+                        writer.WriteElementString("positionY", "" + hT.boardPosition.y);
+                    } else {
+                        writer.WriteElementString("positionX", "" + Mathf.Abs((gridSize.x + Mathf.Abs(gridSize.y - hT.boardPosition.y - 1) - 1 - hT.boardPosition.x)));
+                        writer.WriteElementString("positionY", "" + Mathf.Abs(gridSize.y - 1 - hT.boardPosition.y));
+                    }
                     writer.WriteEndElement();
                 }
             }
@@ -266,8 +294,32 @@ public class HexGridFieldManager : MonoBehaviour {
         }
     }
 
+    public bool allUnitsSet()
+    {
+        for (int k = 0; k < layoutHexTiles.Length; k++)
+        {
+            if (layoutHexTiles[k].GetComponent<LayoutHexTile>().numberOfAvailableUnits > 0)
+                return false;
+        }
+        return true;
+    }
+
+    public void checkAvailableLayoutUnits()
+    {
+        if (!allUnitsSet())
+            return;
+        if (playerTurn == 0)
+        {
+            NextPlayerButton.SetActive(true);
+        } else {
+            StartGameButton.SetActive(true);
+        }
+    }
+
     public void startGame()
     {
+        if (!allUnitsSet())
+            return;
         playerCameraPosition1 = (playerTurn == 0 ? cam.transform.position : playerCameraPosition1);
         playerCameraPosition2 = (playerTurn == 1 ? cam.transform.position : playerCameraPosition2);
         playerCameraRotation1 = (playerTurn == 0 ? cam.transform.localRotation : playerCameraRotation1);

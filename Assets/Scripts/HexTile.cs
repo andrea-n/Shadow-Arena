@@ -143,6 +143,7 @@ public class HexTile : MonoBehaviour {
             setSide(HexGridFieldManager.instance.playerTurn, true);
             unit.GetComponent<BasicUnit>().unhideUnit();
             HexGridFieldManager.instance.selectedLayoutHex.changeAvailableUnits(-1);
+            HexGridFieldManager.instance.checkAvailableLayoutUnits();
         }
     }
 
@@ -266,6 +267,14 @@ public class HexTile : MonoBehaviour {
                 neighbourHighlight = false;
             }
         }
+    }
+
+    public void resetTile()
+    {
+        if (unit == null)
+            return;
+        unit.GetComponent<BasicUnit>().forceDestroyUnit();
+        unit = null;
     }
 
     public void setSide(int sid, bool layout = false)

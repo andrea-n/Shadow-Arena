@@ -71,6 +71,12 @@ public class BasicUnit : MonoBehaviour {
         Destroy(this);
     }
 
+    public void forceDestroyUnit()
+    {
+        Destroy(currentModel);
+        Destroy(this);
+    }
+
     public void destroyUnit()
     {
         if (animator != null)

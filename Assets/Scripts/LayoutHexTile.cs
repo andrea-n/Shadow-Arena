@@ -93,7 +93,7 @@ public class LayoutHexTile : HexTile {
 
     public void destroy()
     {
-        unit.GetComponent<BasicUnit>().destroyUnit();
+        unit.GetComponent<BasicUnit>().forceDestroyUnit();
         Destroy(textNumber);
     }
 
