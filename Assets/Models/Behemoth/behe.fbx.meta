@@ -1,69 +1,43 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: d02e4684b2398ed4c861d587c7edc02b
-timeCreated: 1454675432
-=======
-guid: 364b3d67bdfae0e419fa9dfe338c76d9
-timeCreated: 1454676746
->>>>>>> origin/master
+guid: b17faeeff486ec447bb63001c5cbc815
+timeCreated: 1454677010
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Kapsle
-    100004: Kapsle_2
-    100006: Kruh
-    100008: Krychle
-    100010: Krychle_2
-    100012: Rovina
-    100014: Rovina_2
-    100016: Rovina_3
-    100018: Rovina_4
-    100020: Rovina_5
-    100022: Symetrie
-    100024: Symetrie_1
-    100026: Symetrie_2
-    100028: Symetrie_2_2
-    100030: Symetrie_3
-    100032: Symetrie_3_2
-    100034: "V\xE1lec"
+    100002: Camera
+    100004: Koule
+    100006: Koule_2
+    100008: Koule_3
+    100010: Koule_4
+    100012: Koule_5
+    100014: Koule_6
+    100016: Lamp
+    100018: Symetrie
+    100020: Symetrie_1
+    100022: Symetrie_2
     400000: //RootNode
-    400002: Kapsle
-    400004: Kapsle_2
-    400006: Kruh
-    400008: Krychle
-    400010: Krychle_2
-    400012: Rovina
-    400014: Rovina_2
-    400016: Rovina_3
-    400018: Rovina_4
-    400020: Rovina_5
-    400022: Symetrie
-    400024: Symetrie_1
-    400026: Symetrie_2
-    400028: Symetrie_2_2
-    400030: Symetrie_3
-    400032: Symetrie_3_2
-    400034: "V\xE1lec"
-    2300000: Kapsle
-    2300002: Kruh
-    2300004: Krychle
-    2300006: Rovina
-    2300008: Rovina_3
-    2300010: "V\xE1lec"
-    3300000: Kapsle
-    3300002: Kruh
-    3300004: Krychle
-    3300006: Rovina
-    3300008: Rovina_3
-    3300010: "V\xE1lec"
-    4300000: Rovina
-    4300002: Kapsle
-    4300004: "V\xE1lec"
-    4300006: Kruh
-    4300008: Krychle
-    4300010: Rovina_3
+    400002: Camera
+    400004: Koule
+    400006: Koule_2
+    400008: Koule_3
+    400010: Koule_4
+    400012: Koule_5
+    400014: Koule_6
+    400016: Lamp
+    400018: Symetrie
+    400020: Symetrie_1
+    400022: Symetrie_2
+    2300000: Koule
+    2300002: Koule_3
+    2300004: Koule_5
+    3300000: Koule
+    3300002: Koule_3
+    3300004: Koule_5
+    4300000: Koule_5
+    4300002: Koule_3
+    4300004: Koule
   materials:
     importMaterials: 1
     materialName: 0
