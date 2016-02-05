@@ -7,7 +7,7 @@ public class RankPortal : BasicUnit
     {
         if(!attacking)
         {
-            Debug.Log("END GAME");
+			GameObject.Find ("EndGame").SetActive (true);
         }
     }
 }
