@@ -7,7 +7,7 @@ public class RankPortal : BasicUnit
     {
         if(!attacking)
         {
-			GameObject.Find ("EndGame").SetActive (true);
+            GameObject.Find("MenuManager").GetComponent<MenuManager>().QuitToMenu();
         }
     }
 }
