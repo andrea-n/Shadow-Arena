@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 6b36e0145f37751488ab3c66246b0710
+timeCreated: 1454676747
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Kapsle
+    100002: Kapsle_2
+    100004: Kruh
+    100006: Krychle
+    100008: Krychle_1
+    100010: Krychle_2
+    100012: Krychle_2_2
+    100014: Krychle_3
+    100016: "Ku\u017Eel"
+    100018: "Ku\u017Eel_1"
+    100020: Rovina
+    100022: Rovina_1
+    100024: Rovina_1_2
+    100026: Rovina_1_3
+    100028: Rovina_1_4
+    100030: Rovina_1_5
+    100032: Rovina_1_6
+    100034: Rovina_2
+    100036: Rovina_3
+    100038: Rovina_4
+    100040: Rovina_5
+    100042: Symetrie
+    100044: Symetrie_1
+    100046: Symetrie_2
+    100048: Symetrie_2_2
+    100050: Symetrie_3
+    100052: Symetrie_3_2
+    100054: Symetrie_3_3
+    100056: Symetrie_3_4
+    100058: Symetrie_3_5
+    100060: Symetrie_3_6
+    100062: Symetrie_4
+    100064: Symetrie_5
+    100066: //RootNode
+    100068: Trubka
+    100070: "V\xE1lec"
+    100072: "V\xE1lec_1"
+    400000: Kapsle
+    400002: Kapsle_2
+    400004: Kruh
+    400006: Krychle
+    400008: Krychle_1
+    400010: Krychle_2
+    400012: Krychle_2_2
+    400014: Krychle_3
+    400016: "Ku\u017Eel"
+    400018: "Ku\u017Eel_1"
+    400020: Rovina
+    400022: Rovina_1
+    400024: Rovina_1_2
+    400026: Rovina_1_3
+    400028: Rovina_1_4
+    400030: Rovina_1_5
+    400032: Rovina_1_6
+    400034: Rovina_2
+    400036: Rovina_3
+    400038: Rovina_4
+    400040: Rovina_5
+    400042: Symetrie
+    400044: Symetrie_1
+    400046: Symetrie_2
+    400048: Symetrie_2_2
+    400050: Symetrie_3
+    400052: Symetrie_3_2
+    400054: Symetrie_3_3
+    400056: Symetrie_3_4
+    400058: Symetrie_3_5
+    400060: Symetrie_3_6
+    400062: Symetrie_4
+    400064: Symetrie_5
+    400066: //RootNode
+    400068: Trubka
+    400070: "V\xE1lec"
+    400072: "V\xE1lec_1"
+    2300000: Kapsle
+    2300002: Kruh
+    2300004: Krychle
+    2300006: Krychle_1
+    2300008: Krychle_2
+    2300010: Krychle_2_2
+    2300012: "Ku\u017Eel"
+    2300014: "Ku\u017Eel_1"
+    2300016: Rovina
+    2300018: Rovina_1
+    2300020: Rovina_1_4
+    2300022: Rovina_3
+    2300024: Trubka
+    2300026: "V\xE1lec"
+    2300028: "V\xE1lec_1"
+    3300000: Kapsle
+    3300002: Kruh
+    3300004: Krychle
+    3300006: Krychle_1
+    3300008: Krychle_2
+    3300010: Krychle_2_2
+    3300012: "Ku\u017Eel"
+    3300014: "Ku\u017Eel_1"
+    3300016: Rovina
+    3300018: Rovina_1
+    3300020: Rovina_1_4
+    3300022: Rovina_3
+    3300024: Trubka
+    3300026: "V\xE1lec"
+    3300028: "V\xE1lec_1"
+    4300000: Rovina
+    4300002: "Ku\u017Eel_1"
+    4300004: "Ku\u017Eel"
+    4300006: "V\xE1lec_1"
+    4300008: Rovina_1
+    4300010: Rovina_1_4
+    4300012: Krychle_2
+    4300014: Krychle
+    4300016: Krychle_1
+    4300018: Trubka
+    4300020: Kapsle
+    4300022: "V\xE1lec"
+    4300024: Kruh
+    4300026: Krychle_2_2
+    4300028: Rovina_3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
