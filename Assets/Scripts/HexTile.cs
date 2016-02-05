@@ -270,7 +270,13 @@ public class HexTile : MonoBehaviour {
     public void setSide(int sid)
     {
         unit.GetComponent<BasicUnit>().side = sid;
-        unit.transform.rotation = new Quaternion(0, 1, 0, sid * 180);
+        if (unit.GetComponent<BasicUnit>().rank == 3 || unit.GetComponent<BasicUnit>().rank == 6
+            || unit.GetComponent<BasicUnit>().rank == 8)
+        {
+            unit.transform.rotation = new Quaternion(0, 1, 0, sid * 180 * -1);
+        } else {
+            unit.transform.rotation = new Quaternion(0, 1, 0, sid * 180);
+        }
     }
 
     public void setUnit(GameObject unitObject)
@@ -278,6 +284,15 @@ public class HexTile : MonoBehaviour {
         unit = unitObject;
         unit.transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
         unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180);
+        if (unit.GetComponent<BasicUnit>().rank == 3 || unit.GetComponent<BasicUnit>().rank == 6
+            || unit.GetComponent<BasicUnit>().rank == 8)
+        {
+            unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180 * -1);
+        }
+        else
+        {
+            unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180);
+        }
     }
 
     public void setPlaceHolder(GameObject pHolder)
