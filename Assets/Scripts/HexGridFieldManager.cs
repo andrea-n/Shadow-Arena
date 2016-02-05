@@ -72,21 +72,7 @@ public class HexGridFieldManager : MonoBehaviour {
             selectedHex.selectNeighbours(selectedHex.unit.GetComponent<BasicUnit>().reach, false);
         }
 
-        for (int j = 0; j < gridSize.y; j++) {
-            for (int i = 0; i < gridSize.x; i++) {
-                HexTile tile = ((GameObject)board[new Point(i, j)]).GetComponent<HexTile>();
-                if (tile.unit != null) {
-                    if (tile.unit.GetComponent<BasicUnit>().side == playerTurn)
-                    {
-                        tile.unit.GetComponent<BasicUnit>().unhideUnit();
-                        tile.highlightUnitTile();
-                    } else {
-                        tile.unit.GetComponent<BasicUnit>().hideUnit();
-                        tile.unHighlightUnitTile();
-                    }
-                }
-            }
-        }
+        checkUnitsOnBoard();
     }
 
     void createGrid() {
@@ -272,23 +258,25 @@ public class HexGridFieldManager : MonoBehaviour {
         editMode = false;
         numberOfActions = 2;
         numberOfActionsText.text = "Number of actions: " + numberOfActions;
-        for (int j = 0; j < gridSize.y; j++)
+        checkUnitsOnBoard();
+    }
+
+    public void checkUnitsOnBoard()
+    {
+        foreach (GameObject til in board.Values)
         {
-            for (int i = 0; i < gridSize.x; i++)
+            HexTile tile = til.GetComponent<HexTile>();
+            if (tile.unit != null)
             {
-                HexTile tile = ((GameObject)board[new Point(i, j)]).GetComponent<HexTile>();
-                if (tile.unit != null)
+                if (tile.unit.GetComponent<BasicUnit>().side == playerTurn)
                 {
-                    if (tile.unit.GetComponent<BasicUnit>().side == playerTurn)
-                    {
-                        tile.unit.GetComponent<BasicUnit>().unhideUnit();
-                        tile.highlightUnitTile();
-                    }
-                    else
-                    {
-                        tile.unit.GetComponent<BasicUnit>().hideUnit();
-                        tile.unHighlightUnitTile();
-                    }
+                    tile.unit.GetComponent<BasicUnit>().unhideUnit();
+                    tile.highlightUnitTile();
+                }
+                else
+                {
+                    tile.unit.GetComponent<BasicUnit>().hideUnit();
+                    tile.unHighlightUnitTile();
                 }
             }
         }
@@ -307,7 +295,11 @@ public class HexGridFieldManager : MonoBehaviour {
     public void checkAvailableLayoutUnits()
     {
         if (!allUnitsSet())
+        {
+            NextPlayerButton.SetActive(false);
+            StartGameButton.SetActive(false);
             return;
+        }
         if (playerTurn == 0)
         {
             NextPlayerButton.SetActive(true);
@@ -328,6 +320,7 @@ public class HexGridFieldManager : MonoBehaviour {
         cam.GetComponent<cameraMovement>().reset();
         cam.transform.position = (playerTurn == 0 ? playerCameraPosition1 : playerCameraPosition2);
         cam.transform.localRotation = (playerTurn == 0 ? playerCameraRotation1 : playerCameraRotation2);
+        checkUnitsOnBoard();
         if (playerTurn == 1)
         {
             destroyLayoutHexTiles();

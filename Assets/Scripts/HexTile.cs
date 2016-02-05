@@ -181,7 +181,8 @@ public class HexTile : MonoBehaviour {
             if (unit == null)
                 return;
             HexGridFieldManager.instance.addAvailableUnit(unit.GetComponent<BasicUnit>().rank);
-            unit.GetComponent<BasicUnit>().destroyUnit();
+            unit.GetComponent<BasicUnit>().forceDestroyUnit();
+            HexGridFieldManager.instance.checkAvailableLayoutUnits();
             unit = null;
         }
     }
