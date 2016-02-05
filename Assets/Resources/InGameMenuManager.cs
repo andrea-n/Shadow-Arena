@@ -39,4 +39,16 @@ public class InGameMenuManager : MonoBehaviour {
 			TogglePause ();
 		}
 	}
+
+    void Start()
+    {
+        Time.timeScale = 1f;
+        inGameCanvas.gameObject.SetActive(!isPaused);
+        menuCanvas.gameObject.SetActive(isPaused);
+        Camera.main.GetComponent<Blur>().enabled = isPaused;
+        if (!preparationPhase)
+        {
+            Camera.main.GetComponent<cameraMovement>().enabled = !isPaused;
+        }
+    }
 }

@@ -17,6 +17,7 @@ public class BasicUnit : MonoBehaviour {
     private GameObject currentModel;
     public bool visibleModel = false;
     public bool vulnerable = true, moveable = true, passiveAbility = false;
+    private Animator animator;
 
 
     public void setPath(ArrayList pathList)
@@ -63,10 +64,20 @@ public class BasicUnit : MonoBehaviour {
         hiddenRank = rank;
     }
 
-    public void destroyUnit()
+    private IEnumerator destroy()
     {
+        yield return new WaitForSeconds(2);
         Destroy(currentModel);
         Destroy(this);
+    }
+
+    public void destroyUnit()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Death");
+        }
+        StartCoroutine(destroy());
     }
 
     public void attackTile()
@@ -74,6 +85,11 @@ public class BasicUnit : MonoBehaviour {
         if (passiveAbility)
         {
             useAbility();
+        }
+        if(animator != null)
+        {
+            animator.SetTrigger("Attack");
+            Debug.Log("Attack Animation");
         }
         visibleModel = true;
         moving = false;
@@ -164,6 +180,7 @@ public class BasicUnit : MonoBehaviour {
             Destroy(currentModel);
         }
         currentModel = (GameObject)Instantiate(hiddenModel);
+        animator = currentModel.GetComponent<Animator>();
         currentModel.transform.position = transform.position;
         currentModel.transform.rotation = transform.rotation;
         //GetComponent<MeshFilter>().mesh = hiddenMesh;
@@ -176,6 +193,7 @@ public class BasicUnit : MonoBehaviour {
             Destroy(currentModel);
         }
         currentModel = (GameObject)Instantiate(mainModel);
+        animator = currentModel.GetComponent<Animator>();
         currentModel.transform.position = transform.position;
         currentModel.transform.rotation = transform.rotation;
         //GetComponent<MeshFilter>().mesh = mainMesh;
@@ -190,7 +208,8 @@ public class BasicUnit : MonoBehaviour {
     void Start () {
         path = new ArrayList();
         resetRank();
-	}
+        animator = mainModel.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()

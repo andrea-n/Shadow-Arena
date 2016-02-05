@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.1726942, y: -4.27972889, z: -2.23174477}
+  m_LocalPosition: {x: 15.172694, y: -4.279729, z: -2.2317448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   reach: 2
   side: 0
   rank: 6
-  mainModel: {fileID: 100330, guid: c889a08b73874d84fbcb219bc9ec5f27, type: 2}
+  mainModel: {fileID: 169630, guid: 2cf1a4059cd3b8d4c850399ffd6956b3, type: 2}
   hiddenModel: {fileID: 100330, guid: c889a08b73874d84fbcb219bc9ec5f27, type: 2}
   visibleModel: 0
   vulnerable: 1
@@ -58,7 +58,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mainModel
       value: 
-      objectReference: {fileID: 100330, guid: c889a08b73874d84fbcb219bc9ec5f27, type: 2}
+      objectReference: {fileID: 169630, guid: 2cf1a4059cd3b8d4c850399ffd6956b3, type: 2}
     - target: {fileID: 0}
       propertyPath: hiddenModel
       value: 
