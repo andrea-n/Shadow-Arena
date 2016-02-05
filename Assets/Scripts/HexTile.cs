@@ -134,12 +134,13 @@ public class HexTile : MonoBehaviour {
             PathFinder.instance.reset();
         } else {
             if (HexGridFieldManager.instance.selectedLayoutHex == null || unit != null ||
-                HexGridFieldManager.instance.selectedLayoutHex.numberOfAvailableUnits <= 0 ||
-                boardPosition.y >= 4)
+                HexGridFieldManager.instance.selectedLayoutHex.numberOfAvailableUnits <= 0)
+                return;
+            if (HexGridFieldManager.instance.playerTurn == 0 ? boardPosition.y >= 4 : boardPosition.y <= HexGridFieldManager.instance.gridSize.y - 5)
                 return;
             //pokud se jednotka nepohybuje, tak pole vybereme
-            setUnit((GameObject)Instantiate(HexGridFieldManager.instance.selectedLayoutHex.unit));
-            setSide(HexGridFieldManager.instance.playerTurn);
+            setUnit((GameObject)Instantiate(HexGridFieldManager.instance.selectedLayoutHex.unit), HexGridFieldManager.instance.playerTurn, true);
+            setSide(HexGridFieldManager.instance.playerTurn, true);
             unit.GetComponent<BasicUnit>().unhideUnit();
             HexGridFieldManager.instance.selectedLayoutHex.changeAvailableUnits(-1);
         }
@@ -267,31 +268,29 @@ public class HexTile : MonoBehaviour {
         }
     }
 
-    public void setSide(int sid)
+    public void setSide(int sid, bool layout = false)
     {
         unit.GetComponent<BasicUnit>().side = sid;
-        if (unit.GetComponent<BasicUnit>().rank == 3 || unit.GetComponent<BasicUnit>().rank == 6
-            || unit.GetComponent<BasicUnit>().rank == 8)
-        {
-            unit.transform.rotation = new Quaternion(0, 1, 0, sid * 180 * -1);
-        } else {
+        if(!layout)
             unit.transform.rotation = new Quaternion(0, 1, 0, sid * 180);
-        }
     }
 
-    public void setUnit(GameObject unitObject)
+    public void setUnit(GameObject unitObject, int side = 0, bool layout = false)
     {
         unit = unitObject;
         unit.transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
-        unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180);
+        // unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180);
+
+        if (layout)
+            return;
         if (unit.GetComponent<BasicUnit>().rank == 3 || unit.GetComponent<BasicUnit>().rank == 6
             || unit.GetComponent<BasicUnit>().rank == 8)
         {
-            unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180 * -1);
+            unit.transform.Rotate(new Vector3(0, 180 * side, 0));
         }
         else
         {
-            unit.transform.rotation = new Quaternion(0, 1, 0, unitObject.GetComponent<BasicUnit>().side * 180);
+            unit.transform.Rotate(new Vector3(0, 180 * (side == 0 ? 1 : 0), 0));
         }
     }
 

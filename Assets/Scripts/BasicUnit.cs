@@ -82,14 +82,20 @@ public class BasicUnit : MonoBehaviour {
 
     public void attackTile()
     {
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        StartCoroutine(attackTileForce());
+    }
+
+    private IEnumerator attackTileForce()
+    {
+        //yield return new WaitForSeconds(1.5f);
         if (passiveAbility)
         {
             useAbility();
-        }
-        if(animator != null)
-        {
-            animator.SetTrigger("Attack");
-            Debug.Log("Attack Animation");
         }
         visibleModel = true;
         moving = false;
@@ -100,11 +106,13 @@ public class BasicUnit : MonoBehaviour {
             attackingTile.unit.GetComponent<BasicUnit>().destroyUnit();
             attackingTile.unit = null;
             path.Add(attackingTile);
+            yield return new WaitForSeconds(1.5f);
             proceedPath();
             resetRank();
         }
         else if(hiddenRank < attackingTile.unit.GetComponent<BasicUnit>().attackedGetRank())
         {
+            yield return new WaitForSeconds(1.5f);
             attackingTile.unit.GetComponent<BasicUnit>().resetRank();
             //HexGridFieldManager.instance.selectedHex.unit.GetComponent<BasicUnit>().destroyUnit();
             path.Clear();
@@ -117,6 +125,7 @@ public class BasicUnit : MonoBehaviour {
         }
         else
         {
+            yield return new WaitForSeconds(1.5f);
             attackingTile.unit.GetComponent<BasicUnit>().destroyUnit();
             attackingTile.unit = null;
             path.Clear();

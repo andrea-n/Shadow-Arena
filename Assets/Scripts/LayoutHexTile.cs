@@ -67,12 +67,17 @@ public class LayoutHexTile : HexTile {
         }
     }
 
-    public void init()
+    public void init(int playerTurn)
     {
         textNumber = (GameObject)Instantiate(textNumberPattern);
         textNumber.GetComponent<TextMesh>().text = "Rank x available: " + numberOfAvailableUnits;
         textNumber.transform.position = this.transform.position;
-        textNumber.transform.position += new Vector3(-1.5f, 0, 1.5f);
+        textNumber.transform.position += new Vector3(-1.5f, 0, 1.5f * (playerTurn == 0 ? 1 : -1));
+        if (playerTurn == 1)
+        {
+            textNumber.transform.Rotate(new Vector3(0, 0, 180));
+            //unit.transform.Rotate(new Vector3(0, 180, 0));
+        }
     }
 
     public void setAvailableUnits(int number)
